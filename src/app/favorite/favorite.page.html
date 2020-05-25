@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favorite</ion-title>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content>
+ <ion-card *ngFor="let article of articles">
+    <img class="img-responsive" src="{{article.urlToImage}}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{article.publishedAt | date:'mediumDate' }}</ion-card-subtitle><ion-card-title>{{article.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{article.description}}</p>
+      <ion-button ion-button fill="outline" (click)=loadArticle(article.url) large>full article</ion-button>
+      <ion-button (click)="whatsAppShareArticle(article)" ion-button fill="outline" ><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
+      <ion-button (click)="shareArticle(article)" ion-button fill="outline" ><ion-icon name="arrow-redo-outline"></ion-icon></ion-button>
+      <ion-button (click)="removeFavourite($event.target,article)" ion-button fill="outline" item-end><ion-icon name="heart"></ion-icon></ion-button>
+    </ion-card-content>
+  </ion-card> 
+</ion-content>

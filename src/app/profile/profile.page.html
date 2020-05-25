@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-list> 
+  <ion-item>
+    <ion-label>Night Mode</ion-label>
+    <ion-toggle (ionChange)="onClick($event)" slot="end"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Privacy Policy</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Version</ion-label>
+    <ion-label class="ion-text-right">Beta</ion-label>
+  </ion-item>
+  </ion-list>
+</ion-content>

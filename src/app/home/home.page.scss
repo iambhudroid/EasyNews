@@ -1,0 +1,24 @@
+// ion-card{
+//   --background: #021b46;
+//   --color: #fff;
+// }
+ 
+
+/* Custom Skeleton Line Height and Margin */
+.custom-skeleton ion-skeleton-text {
+  line-height: 13px;
+}
+
+.custom-skeleton ion-skeleton-text:last-child {
+  margin-bottom: 5px;
+}
+
+.skeleton-thumbnail{
+  width: 100%;
+  height: 150px;
+}
+
+.selectedChip{
+ --background: #3171e0;
+ --color: #fff;
+}

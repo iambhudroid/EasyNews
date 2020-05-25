@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Category
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ <ion-content>
+<ion-list>
+<!-- Skeleton screen -->  
+<div *ngIf="!sourcesList">
+  <ion-item *ngFor = "let i of Arr(15).fill(1)">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label><h1><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></h1></ion-label>
+  </ion-item>
+</div>
+<div *ngIf="sourcesList"> 
+   <ion-item *ngFor="let source of sourcesList" (click)="selectSource(source.id)"> 
+      <img class="circular--square" src='../assets/images/{{source.id}}.png'>
+      <ion-label>{{source.name}}</ion-label>
+   </ion-item> 
+</div>
+</ion-list>  
+</ion-content> 

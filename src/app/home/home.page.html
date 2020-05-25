@@ -1,0 +1,57 @@
+<ion-header color="primary" [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+<div *ngIf="articles">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" (ionPull)="hideSplashScreen($event)" (ionStart)="hideSplashScreen($event)">
+    <!-- <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200"></ion-refresher> -->
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher> 
+  <ion-card-header> 
+    <ion-scroll scrollX="true" style="width: 100vw; height: 50px;">
+      <ion-row nowrap class="headerChip"> 
+        <div *ngFor="let categorie of categories let idx=index">
+          <ion-chip  [class.selectedChip]="categorie === selectedcategorie" (click)="onSelectCategorie(categorie)">
+            <ion-label>{{categorie}}</ion-label>
+            <div></div>
+          </ion-chip>
+        </div> 
+      </ion-row>
+    </ion-scroll> 
+  </ion-card-header>
+  <ion-card *ngFor="let article of articles">
+    <img class="img-responsive" src="{{article.urlToImage}}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{article.publishedAt | date:'mediumDate' }}</ion-card-subtitle><ion-card-title>{{article.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{article.description}}</p>
+      <ion-button ion-button fill="outline" (click)=loadArticle(article.url) large>full article</ion-button>
+      <ion-button (click)="whatsAppShareArticle(article)" ion-button fill="outline" ><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
+      <ion-button (click)="shareArticle(article)" ion-button fill="outline" ><ion-icon name="arrow-redo-outline"></ion-icon></ion-button>
+      <ion-button (click)="addFavourite($event.target,article)" ion-button fill="outline" item-end><ion-icon name="heart-outline"></ion-icon></ion-button>
+    </ion-card-content> 
+  </ion-card>
+</div>
+<!-- Skeleton screen --> 
+<div *ngIf="!articles"> 
+  <div *ngFor = "let i of Arr(5).fill(1)">
+    <ion-item>
+      <ion-thumbnail class="skeleton-thumbnail"><ion-skeleton-text animated ></ion-skeleton-text></ion-thumbnail> 
+    </ion-item>
+    <ion-item >
+      <ion-label>
+        <p><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></p>
+        <p><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></p>
+        <p><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></p>
+      </ion-label>
+    </ion-item>
+  </div>
+</div>
+</ion-content>
